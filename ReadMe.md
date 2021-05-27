@@ -17,9 +17,32 @@ Also need to write tests to cover expected range of inputs and outputs. Ensuring
 
 ## Method Body
 
-![MethodBody](/Images/MethodBody.png)
+```c#
+ public static string PlingPlangPlong(int n)
+        {
+            var sb = new StringBuilder();
+            if(n % 3 == 0)
+            {
+                sb.Append("Pling");
+            }
+            if(n % 5 == 0)
+            {
+                sb.Append("Plang");
+            }
+            if(n % 7 == 0)
+            {
+                sb.Append("Plong");
+            }
+            if(string.IsNullOrEmpty(sb.ToString()))
+            {
+                sb.Append(n.ToString());
+            }
 
-The above Image shows the Method solution for PlingPlangPlong. The method itself is simple enough, as described earlier the method takes an input of a number (n) and returns a string depending on the numbers factors. 
+            return sb.ToString();
+        }
+```
+
+The above code shows the Method solution for PlingPlangPlong. The method itself is simple enough, as described earlier the method takes an input of a number (n) and returns a string depending on the numbers factors. 
 
 The method uses a string builder to append the results onto as numbers are able to have multiple factors. It then checks if the number given is a factor of 3, 5 and 7 and if so appends the appropriate word onto the string. If the number has no factors the string will have the number appended to it. 
 
@@ -35,16 +58,117 @@ The name of the tests should consist of three parts:
 - The scenario under which is being tested
 - The expected behaviour when the scenario is invoked 
 
-![BasicUnitTests](/Images/BasicUnitTests.png)
+```c#
+[TestCase(3)]
+        [TestCase(6)]
+        [TestCase(57)]
+        [TestCase(-33)]
+        public void PlingPlangPlong_MultiplesOf3_ReturnsPling(int number)
+        {
+            var result = RaindropsClass.PlingPlangPlong(number);
+            Assert.That(result, Is.EqualTo("Pling"));
+        }
+
+        [TestCase(5)]
+        [TestCase(10)]
+        [TestCase(50)]
+        [TestCase(-40)]
+        public void PlingPlangPlong_MultiplesOf5_ReturnsPlang(int number)
+        {
+            var result = RaindropsClass.PlingPlangPlong(number);
+            Assert.That(result, Is.EqualTo("Plang"));
+        }
+
+        [TestCase(7)]
+        [TestCase(14)]
+        [TestCase(77)]
+        [TestCase(-49)]
+        public void PlingPlangPlong_MultiplesOf7_ReturnsPlong(int number)
+        {
+            var result = RaindropsClass.PlingPlangPlong(number);
+            Assert.That(result, Is.EqualTo("Plong"));
+        }
+
+        [TestCase(4)]
+        [TestCase(11)]
+        [TestCase(38)]
+        [TestCase(-379)]
+        public void PlingPlangPlong_MultiplesOfNone_ReturnsTheNumber(int number)
+        {
+            var result = RaindropsClass.PlingPlangPlong(number);
+            Assert.That(result, Is.EqualTo(number.ToString()));
+        }
+```
 
 The above is the first tests I wrote to test the "basic" functionality of the method. These tests are checking all of the IF statements within the method and are ensuring the correct string is returned when the value is passed. These tests simply input a number that is a factor of 3, 5 or 7 and check if the returned string is correct. The final test the checks if the number is returned as a string if the number given is not a factor.
 
-As you can see by the test explorer on the left hand side all these tests pass.
+```c#
+ [TestCase(15)]
+        [TestCase(30)]
+        [TestCase(150)]
+        [TestCase(-300)]
+        public void PlingPlangPlong_MultiplesOf3And5_ReturnsPlingPlang(int number)
+        {
+            var result = RaindropsClass.PlingPlangPlong(number);
+            Assert.That(result, Is.EqualTo("PlingPlang"));
+        }
 
+        [TestCase(21)]
+        [TestCase(42)]
+        [TestCase(63)]
+        [TestCase(-63)]
+        public void PlingPlangPlong_MultiplesOf3And7_ReturnsPlingPlong(int number)
+        {
+            var result = RaindropsClass.PlingPlangPlong(number);
+            Assert.That(result, Is.EqualTo("PlingPlong"));
+        }
 
+        [TestCase(35)]
+        [TestCase(70)]
+        [TestCase(700)]
+        [TestCase(-350)]
+        public void PlingPlangPlong_MultiplesOf5And7_ReturnsPlangPlong(int number)
+        {
+            var result = RaindropsClass.PlingPlangPlong(number);
+            Assert.That(result, Is.EqualTo("PlangPlong"));
+        }
 
-![MultpleFactorUnitTests](/Images/MultpleFactorUnitTests.png)
+        [TestCase(105)]
+        [TestCase(210)]
+        [TestCase(630)]
+        [TestCase(-105)]
+        public void PlingPlangPlong_MultiplesOf3And5And7_ReturnsPlingPlangPlong(int number)
+        {
+            var result = RaindropsClass.PlingPlangPlong(number);
+            Assert.That(result, Is.EqualTo("PlingPlangPlong"));
+        }
+```
 
 The next step of tests was to check if the strings we're appended correctly when the number give had multiple factors. The above tests show all possible instances of multiple factors ((3 and 5) (3 and 7) (5 and 7) (3,5 and 7)).
 
-Again as you can see from the left hand side the tests have all passed.
+```C#
+        [TestCase(0)]
+        [TestCase(-0)]
+        public void PlingPlangPlong_Number0_ReturnsPlingPlangPlong(int number)
+        {
+            var result = RaindropsClass.PlingPlangPlong(number);
+            Assert.That(result, Is.EqualTo("PlingPlangPlong"));
+        }
+
+        [TestCase(null)]
+        public void PlingPlangPlong_NullInput_ReturnsNullIsNotAValidNumber(int number)
+        {
+            var result = RaindropsClass.PlingPlangPlong(number);
+            Assert.That(result, Is.EqualTo("Null is not a valid number"));
+        }
+```
+
+The final two tests we're to assure any edge cases were checked. 0 is a number with every factor so it will have returned "PlingPlangPlong". I also decided to add a test case to check for "null". Originally this test case failed as it also returned "PlingPlangPlong" however I then went on to adapt the method to include an IF statement to catch if a null value was input. 
+
+```c#
+            if(n.Equals(null))
+            {
+                return "Null is not a valid number";
+            }
+```
+

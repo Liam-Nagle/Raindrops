@@ -13,7 +13,8 @@ namespace RaindropTests
         [TestCase(-33)]
         public void PlingPlangPlong_MultiplesOf3_ReturnsPling(int number)
         {
-            Assert.AreEqual("Pling", RaindropsClass.PlingPlangPlong(number));
+            var result = RaindropsClass.PlingPlangPlong(number);
+            Assert.That(result, Is.EqualTo("Pling"));
         }
 
         [TestCase(5)]
@@ -22,7 +23,8 @@ namespace RaindropTests
         [TestCase(-40)]
         public void PlingPlangPlong_MultiplesOf5_ReturnsPlang(int number)
         {
-            Assert.AreEqual("Plang", RaindropsClass.PlingPlangPlong(number));
+            var result = RaindropsClass.PlingPlangPlong(number);
+            Assert.That(result, Is.EqualTo("Plang"));
         }
 
         [TestCase(7)]
@@ -31,7 +33,8 @@ namespace RaindropTests
         [TestCase(-49)]
         public void PlingPlangPlong_MultiplesOf7_ReturnsPlong(int number)
         {
-            Assert.AreEqual("Plong", RaindropsClass.PlingPlangPlong(number));
+            var result = RaindropsClass.PlingPlangPlong(number);
+            Assert.That(result, Is.EqualTo("Plong"));
         }
 
         [TestCase(4)]
@@ -40,7 +43,8 @@ namespace RaindropTests
         [TestCase(-379)]
         public void PlingPlangPlong_MultiplesOfNone_ReturnsTheNumber(int number)
         {
-            Assert.AreEqual(number.ToString(), RaindropsClass.PlingPlangPlong(number));
+            var result = RaindropsClass.PlingPlangPlong(number);
+            Assert.That(result, Is.EqualTo(number.ToString()));
         }
 
         //Variations
@@ -51,7 +55,8 @@ namespace RaindropTests
         [TestCase(-300)]
         public void PlingPlangPlong_MultiplesOf3And5_ReturnsPlingPlang(int number)
         {
-            Assert.AreEqual("PlingPlang", RaindropsClass.PlingPlangPlong(number));
+            var result = RaindropsClass.PlingPlangPlong(number);
+            Assert.That(result, Is.EqualTo("PlingPlang"));
         }
 
         [TestCase(21)]
@@ -60,7 +65,8 @@ namespace RaindropTests
         [TestCase(-63)]
         public void PlingPlangPlong_MultiplesOf3And7_ReturnsPlingPlong(int number)
         {
-            Assert.AreEqual("PlingPlong", RaindropsClass.PlingPlangPlong(number));
+            var result = RaindropsClass.PlingPlangPlong(number);
+            Assert.That(result, Is.EqualTo("PlingPlong"));
         }
 
         [TestCase(35)]
@@ -69,7 +75,8 @@ namespace RaindropTests
         [TestCase(-350)]
         public void PlingPlangPlong_MultiplesOf5And7_ReturnsPlangPlong(int number)
         {
-            Assert.AreEqual("PlangPlong", RaindropsClass.PlingPlangPlong(number));
+            var result = RaindropsClass.PlingPlangPlong(number);
+            Assert.That(result, Is.EqualTo("PlangPlong"));
         }
 
         [TestCase(105)]
@@ -78,7 +85,23 @@ namespace RaindropTests
         [TestCase(-105)]
         public void PlingPlangPlong_MultiplesOf3And5And7_ReturnsPlingPlangPlong(int number)
         {
-            Assert.AreEqual("PlingPlangPlong", RaindropsClass.PlingPlangPlong(number));
+            var result = RaindropsClass.PlingPlangPlong(number);
+            Assert.That(result, Is.EqualTo("PlingPlangPlong"));
+        }
+
+        [TestCase(0)]
+        [TestCase(-0)]
+        public void PlingPlangPlong_Number0_ReturnsPlingPlangPlong(int number)
+        {
+            var result = RaindropsClass.PlingPlangPlong(number);
+            Assert.That(result, Is.EqualTo("PlingPlangPlong"));
+        }
+
+        [TestCase(null)]
+        public void PlingPlangPlong_NullInput_ReturnsNullIsNotAValidNumber(int number)
+        {
+            var result = RaindropsClass.PlingPlangPlong(number);
+            Assert.That(result, Is.EqualTo("Null is not a valid number"));
         }
     }
 }
