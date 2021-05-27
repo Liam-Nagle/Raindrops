@@ -5,6 +5,8 @@ namespace RaindropTests
 {
     public class Tests
     {
+        //Simple Tests
+
         [TestCase(3)]
         [TestCase(6)]
         [TestCase(57)]
@@ -41,5 +43,42 @@ namespace RaindropTests
             Assert.AreEqual(number.ToString(), RaindropsClass.PlingPlangPlong(number));
         }
 
+        //Variations
+
+        [TestCase(15)]
+        [TestCase(30)]
+        [TestCase(150)]
+        [TestCase(-300)]
+        public void PlingPlangPlong_MultiplesOf3And5_ReturnsPlingPlang(int number)
+        {
+            Assert.AreEqual("PlingPlang", RaindropsClass.PlingPlangPlong(number));
+        }
+
+        [TestCase(21)]
+        [TestCase(42)]
+        [TestCase(63)]
+        [TestCase(-63)]
+        public void PlingPlangPlong_MultiplesOf3And7_ReturnsPlingPlong(int number)
+        {
+            Assert.AreEqual("PlingPlong", RaindropsClass.PlingPlangPlong(number));
+        }
+
+        [TestCase(35)]
+        [TestCase(70)]
+        [TestCase(700)]
+        [TestCase(-350)]
+        public void PlingPlangPlong_MultiplesOf5And7_ReturnsPlangPlong(int number)
+        {
+            Assert.AreEqual("PlangPlong", RaindropsClass.PlingPlangPlong(number));
+        }
+
+        [TestCase(105)]
+        [TestCase(210)]
+        [TestCase(630)]
+        [TestCase(-105)]
+        public void PlingPlangPlong_MultiplesOf3And5And7_ReturnsPlingPlangPlong(int number)
+        {
+            Assert.AreEqual("PlingPlangPlong", RaindropsClass.PlingPlangPlong(number));
+        }
     }
 }

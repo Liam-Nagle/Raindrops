@@ -41,3 +41,10 @@ The above is the first tests I wrote to test the "basic" functionality of the me
 
 As you can see by the test explorer on the left hand side all these tests pass.
 
+
+
+![MultpleFactorUnitTests](/Images/MultpleFactorUnitTests.png)
+
+The next step of tests was to check if the strings we're appended correctly when the number give had multiple factors. The above tests show all possible instances of multiple factors ((3 and 5) (3 and 7) (5 and 7) (3,5 and 7)).
+
+Again as you can see from the left hand side the tests have all passed.
