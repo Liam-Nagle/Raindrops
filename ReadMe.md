@@ -59,7 +59,7 @@ The name of the tests should consist of three parts:
 - The expected behaviour when the scenario is invoked 
 
 ```c#
-[TestCase(3)]
+		[TestCase(3)]
         [TestCase(6)]
         [TestCase(57)]
         [TestCase(-33)]
@@ -154,21 +154,9 @@ The next step of tests was to check if the strings we're appended correctly when
             var result = RaindropsClass.PlingPlangPlong(number);
             Assert.That(result, Is.EqualTo("PlingPlangPlong"));
         }
-
-        [TestCase(null)]
-        public void PlingPlangPlong_NullInput_ReturnsNullIsNotAValidNumber(int number)
-        {
-            var result = RaindropsClass.PlingPlangPlong(number);
-            Assert.That(result, Is.EqualTo("Null is not a valid number"));
-        }
 ```
 
-The final two tests we're to assure any edge cases were checked. 0 is a number with every factor so it will have returned "PlingPlangPlong". I also decided to add a test case to check for "null". Originally this test case failed as it also returned "PlingPlangPlong" however I then went on to adapt the method to include an IF statement to catch if a null value was input. 
+The final test was to assure 0 was checked. 0 is a number with every factor so it will have returned "PlingPlangPlong".
 
-```c#
-            if(n.Equals(null))
-            {
-                return "Null is not a valid number";
-            }
-```
+
 

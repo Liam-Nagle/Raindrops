@@ -7,10 +7,6 @@ namespace Raindrops
     {
         public static string PlingPlangPlong(int n)
         {
-            if(n.Equals(null))
-            {
-                return "Null is not a valid number";
-            }
             var sb = new StringBuilder();
             if(n % 3 == 0)
             {

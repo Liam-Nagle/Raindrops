@@ -96,12 +96,5 @@ namespace RaindropTests
             var result = RaindropsClass.PlingPlangPlong(number);
             Assert.That(result, Is.EqualTo("PlingPlangPlong"));
         }
-
-        [TestCase(null)]
-        public void PlingPlangPlong_NullInput_ReturnsNullIsNotAValidNumber(int number)
-        {
-            var result = RaindropsClass.PlingPlangPlong(number);
-            Assert.That(result, Is.EqualTo("Null is not a valid number"));
-        }
     }
 }
